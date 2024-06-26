@@ -9,6 +9,7 @@ services:
         - BASE_IMAGE=ubuntu:22.04
         - BUILD_TYPE=hipblas
         - GO_TAGS=tts
+        - EXTRA_BACKENDS=bark
     container_name: localai
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
