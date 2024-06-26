@@ -19,11 +19,11 @@ services:
       - .env
     environment:
       - DEBUG=true
-      - REBUILD=true # If your gpu is not already included in the current list of default targets the following build details are required.
+      # - REBUILD=true # If your gpu is not already included in the current list of default targets the following build details are required.
       - BUILD_TYPE=hipblas
       - GPU_TARGETS=gfx1030 # Example for RX6600
       # - GPU_TARGETS=gfx1032
-      - GO_TAGS="stablediffusion tts p2p"
+      - GO_TAGS=tts
       # - GO_TAGS="stablediffusion tts p2p"
       # - MODELS_PATH=/models
     volumes:
@@ -33,5 +33,5 @@ services:
       # AMD GPU only require the following devices be passed through to the container for offloading to occur.
       - /dev/dri
       - /dev/kfd
-    group_add:
-      - video
+    # group_add:
+      # - video
