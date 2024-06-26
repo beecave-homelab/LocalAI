@@ -3,7 +3,7 @@ services:
     image: localai/localai:latest-aio-gpu-hipblas
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.amd
       args:
         # - IMAGE_TYPE=extra
         - BASE_IMAGE=ubuntu:22.04
