@@ -4,9 +4,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - IMAGE_TYPE=extra
-        - BASE_IMAGE=ubuntu:22.04
+      # args:
+      #   - IMAGE_TYPE=extra
+      #   - BASE_IMAGE=ubuntu:22.04
     container_name: localai
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
@@ -19,14 +19,14 @@ services:
       - .env
     environment:
       - DEBUG=true
-      # - REBUILD=true # If your gpu is not already included in the current list of default targets the following build details are required.
-      - BUILD_TYPE=hipblas
-      - GPU_TARGETS=gfx1030 # Example for RX6600
-      # - GPU_TARGETS=gfx1032
-      - GO_TAGS=tts
+      # If your gpu is not already included in the current list of default targets the following build details are required.
+      # - REBUILD=true
+      # - BUILD_TYPE=hipblas
+      # - GPU_TARGETS=gfx1030 # Example for RX6600
       # - GO_TAGS="stablediffusion tts p2p"
-      # - MODELS_PATH=/models
+      # - MODELS_PATH=./models
     volumes:
+      #- /models:/build/models:cached
       - ./models:/build/models:cached
       - ./images/:/tmp/generated/images/
     devices:
@@ -35,3 +35,4 @@ services:
       - /dev/kfd
     # group_add:
       # - video
+      # - render
